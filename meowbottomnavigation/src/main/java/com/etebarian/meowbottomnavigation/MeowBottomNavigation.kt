@@ -19,7 +19,7 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 internal typealias IBottomNavigationListener = (model: MeowBottomNavigation.Model) -> Unit
 
 @Suppress("MemberVisibilityCanBePrivate")
-class MeowBottomNavigation : FrameLayout {//todo test orientation & slow anim
+class MeowBottomNavigation : FrameLayout {
 
     private var models = ArrayList<Model>()
     private var cells = ArrayList<MeowBottomNavigationCell>()
@@ -106,6 +106,9 @@ class MeowBottomNavigation : FrameLayout {//todo test orientation & slow anim
         if (nowShowId == -1 && models.isNotEmpty()) {
             show(models.first().id, false)
         }
+        if (nowShowId != -1) {
+            show(nowShowId, false)
+        }
     }
 
     fun add(model: Model) {
@@ -123,6 +126,8 @@ class MeowBottomNavigation : FrameLayout {//todo test orientation & slow anim
             defaultIconColor = this@MeowBottomNavigation.defaultIconColor
             selectedIconColor = this@MeowBottomNavigation.selectedIconColor
             setOnClickListener {
+                if (cell.isEnabledCell)
+                    return@setOnClickListener
                 show(model.id)
                 mOnClickedListener(model)
             }

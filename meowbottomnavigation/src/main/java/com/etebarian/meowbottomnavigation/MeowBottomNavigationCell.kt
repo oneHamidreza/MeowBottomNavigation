@@ -121,7 +121,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
 
         }
 
-    private var isEnabledCell = false
+    var isEnabledCell = false
         set(value) {
             field =value
             val d = GradientDrawable()
@@ -187,17 +187,17 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
         isEnabledCell = false
     }
 
-    fun enableCell() {
+    fun enableCell(isAnimate: Boolean = true) {
         if (!isEnabledCell)
-            animateProgress(true)
+            animateProgress(true, isAnimate)
         isEnabledCell = true
     }
 
-    private fun animateProgress(enableCell: Boolean) {
+    private fun animateProgress(enableCell: Boolean, isAnimate: Boolean = true) {
         val anim = ValueAnimator.ofFloat(0f, 1f)
         anim.apply {
             startDelay = if (enableCell) 250L else 0L
-            duration = 500L
+            duration = if (isAnimate) 500L else 1L
             interpolator = FastOutSlowInInterpolator()
             addUpdateListener {
                 val f = it.animatedFraction

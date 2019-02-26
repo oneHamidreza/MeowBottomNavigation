@@ -26,7 +26,8 @@ add Meow Bottom Navigation in xml
         android:layout_height="wrap_content"/>
 ```
 
-add menu items in code
+add menu items in code.
+
 remember icons must be vector drawable
 ```kotlin
 val bottomNavigation = findView(R.id.bottomNavigation)
@@ -34,4 +35,19 @@ bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_home))
 bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_explore))
 bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
 ....
+```
+
+#Customization
+```xml
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:mbn_backgroundBottomColor="#ffffff"
+        app:mbn_countBackgroundColor="#ff6f00"
+        app:mbn_countTextColor="#ffffff"
+        app:mbn_countTypeface="fonts/SourceSansPro-Regular.ttf"
+        app:mbn_defaultIconColor="#90a4ae"
+        app:mbn_rippleColor="#2f424242"
+        app:mbn_selectedIconColor="#3c415e"
+        app:mbn_shadowColor="#1f212121"/>
 ```

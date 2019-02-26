@@ -1,7 +1,8 @@
 package com.etebarian.meowbottomnavigaion
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Typeface
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,21 +20,26 @@ class MainActivity : AppCompatActivity() {//todo add ic_launcher
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        tv_selected.typeface = Typeface.createFromAsset(assets, "fonts/SourceSansPro-Regular.ttf")
+
         bottomNavigation.add(MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home))
         bottomNavigation.add(MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore))
         bottomNavigation.add(MeowBottomNavigation.Model(ID_MESSAGE, R.drawable.ic_message))
         bottomNavigation.add(MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification))
         bottomNavigation.add(MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account))
 
-        bt_update.setOnClickListener {
-            //            val id = try {
-//                et.text.toString().toInt()
-//            }catch (e: Exception){
-//                e.printStackTrace()
-//                0
-//            }
-//            bottomNavigation.show(id)
-            bottomNavigation.setCount(ID_NOTIFICATION, "1")
+        bottomNavigation.setCount(ID_NOTIFICATION, "3")
+
+        bottomNavigation.setOnShowListener {
+            val name = when (it.id) {
+                ID_HOME -> "HOME"
+                ID_EXPLORE -> "EXPLORE"
+                ID_MESSAGE -> "MESSAGE"
+                ID_NOTIFICATION -> "NOTIFICATION"
+                ID_ACCOUNT -> "ACCOUNT"
+                else -> ""
+            }
+            tv_selected.text = "$name page is selected"
         }
     }
 }

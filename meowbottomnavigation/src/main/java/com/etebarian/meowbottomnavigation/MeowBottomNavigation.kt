@@ -6,7 +6,9 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
+import android.os.Build
 import android.util.AttributeSet
+import android.util.LayoutDirection
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -24,16 +26,18 @@ class MeowBottomNavigation : FrameLayout {
     private var models = ArrayList<Model>()
     private var cells = ArrayList<MeowBottomNavigationCell>()
 
-    private var nowShowId = -1
+    private var selectedId = -1
 
     private var mOnClickedListener: IBottomNavigationListener = {}
     private var mOnShowListener: IBottomNavigationListener = {}
 
-    var heightCell = 0
+    private var heightCell = 0
+    private var isAnimating = false
 
     private var defaultIconColor = Color.parseColor("#757575")
     private var selectedIconColor = Color.parseColor("#2196f3")
     private var backgroundBottomColor = Color.parseColor("#ffffff")
+    private var shadowColor = -0x454546
     private var countTextColor = Color.parseColor("#ffffff")
     private var countBackgroundColor = Color.parseColor("#ff0000")
     private var countTypeface: Typeface? = null
@@ -71,8 +75,9 @@ class MeowBottomNavigation : FrameLayout {
                 countBackgroundColor = getColor(R.styleable.MeowBottomNavigation_mbn_countBackgroundColor, countBackgroundColor)
                 val typeface = getString(R.styleable.MeowBottomNavigation_mbn_countTypeface)
                 rippleColor = getColor(R.styleable.MeowBottomNavigation_mbn_rippleColor, rippleColor)
+                shadowColor = getColor(R.styleable.MeowBottomNavigation_mbn_shadowColor, shadowColor)
 
-                if (typeface != null)
+                if (typeface != null && !typeface.isEmpty())
                     countTypeface = Typeface.createFromAsset(context.assets, typeface)
             }
         } finally {
@@ -95,6 +100,7 @@ class MeowBottomNavigation : FrameLayout {
         bezierView.apply {
             layoutParams = FrameLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heightCell)
             color = backgroundBottomColor
+            shadowColor = this@MeowBottomNavigation.shadowColor
         }
 
         addView(bezierView)
@@ -103,11 +109,11 @@ class MeowBottomNavigation : FrameLayout {
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        if (nowShowId == -1 && models.isNotEmpty()) {
-            show(models.first().id, false)
+        if (selectedId == -1) {
+            bezierView.bezierX = if (Build.VERSION.SDK_INT >= 17 && layoutDirection == LayoutDirection.RTL) measuredWidth + dipf(context, 72) else -dipf(context, 72)
         }
-        if (nowShowId != -1) {
-            show(nowShowId, false)
+        if (selectedId != -1) {
+            show(selectedId, false)
         }
     }
 
@@ -126,7 +132,7 @@ class MeowBottomNavigation : FrameLayout {
             defaultIconColor = this@MeowBottomNavigation.defaultIconColor
             selectedIconColor = this@MeowBottomNavigation.selectedIconColor
             setOnClickListener {
-                if (cell.isEnabledCell)
+                if (cell.isEnabledCell || isAnimating)
                     return@setOnClickListener
                 show(model.id)
                 mOnClickedListener(model)
@@ -151,10 +157,12 @@ class MeowBottomNavigation : FrameLayout {
                 cell.disableCell()
             }
         }
-        nowShowId = id
+        selectedId = id
     }
 
     private fun anim(cell: MeowBottomNavigationCell, id: Int, enableAnimation: Boolean = true) {
+        isAnimating = true
+
         val animDuration = if (enableAnimation) 750L else 1L
         val animInterpolator = FastOutSlowInInterpolator()
 
@@ -170,12 +178,14 @@ class MeowBottomNavigation : FrameLayout {
                     bezierView.bezierX = f * (newX - beforeX) + beforeX
                 else
                     bezierView.bezierX = beforeX - f * (beforeX - newX)
+                if (f == 1f)
+                    isAnimating = false
             }
             start()
         }
 
         val pos = getModelPosition(id)
-        val nowPos = getModelPosition(nowShowId)
+        val nowPos = getModelPosition(selectedId)
         if (Math.abs(pos - nowPos) > 1) {
             val progressAnim = ValueAnimator.ofFloat(0f, 1f)
             progressAnim.apply {
@@ -193,7 +203,7 @@ class MeowBottomNavigation : FrameLayout {
     }
 
     fun isShowing(id: Int): Boolean {
-        return nowShowId == id
+        return selectedId == id
     }
 
     fun getModelById(id: Int): Model? {

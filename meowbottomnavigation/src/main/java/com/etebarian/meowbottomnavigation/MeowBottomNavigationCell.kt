@@ -62,8 +62,11 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
     private var iconSize = dip(context, 24)
         set(value) {
             field = value
-            if (allowDraw)
+            if (allowDraw) {
                 iv.size = value
+                iv.pivotX = iconSize / 2f
+                iv.pivotY = iconSize / 2f
+            }
         }
 
     var countTextColor = 0
@@ -84,7 +87,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
             }
         }
 
-    var countTypeface : Typeface? = null
+    var countTypeface: Typeface? = null
         set(value) {
             field = value
             if (allowDraw && field != null)
@@ -106,6 +109,9 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
             fl.y = (1f - progress) * dip(context, 18) + dip(context, 8)
 
             iv.color = if (progress == 1f) selectedIconColor else defaultIconColor
+            val scale = (1f - progress) * (-0.2f) + 1f
+            iv.scaleX = scale
+            iv.scaleY = scale
 
             val d = GradientDrawable()
             d.setColor(circleColor)
@@ -119,18 +125,19 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
             v_circle.x = (1f - progress) * (if (isFromLeft) -m else m) + ((measuredWidth - dip(context, 48)) / 2f)
             v_circle.y = (1f - progress) * measuredHeight + dip(context, 4)
 
+
         }
 
     var isEnabledCell = false
         set(value) {
-            field =value
+            field = value
             val d = GradientDrawable()
             d.setColor(circleColor)
             d.shape = GradientDrawable.OVAL
             if (Build.VERSION.SDK_INT >= 21 && !isEnabledCell) {
                 fl.background = RippleDrawable(ColorStateList.valueOf(rippleColor), null, d)
-            }else{
-                fl.runAfterDelay(200){
+            } else {
+                fl.runAfterDelay(200) {
                     fl.setBackgroundColor(Color.TRANSPARENT)
                 }
             }
@@ -173,7 +180,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
         countTextColor = countTextColor
         countBackgroundColor = countBackgroundColor
         countTypeface = countTypeface
-        rippleColor= rippleColor
+        rippleColor = rippleColor
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

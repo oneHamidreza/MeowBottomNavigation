@@ -2,7 +2,10 @@ package com.etebarian.meowbottomnavigation
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.*
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Path
+import android.graphics.PointF
 import android.util.AttributeSet
 import android.view.View
 
@@ -32,6 +35,11 @@ class BezierView : View {
         set(value) {
             field = value
             mainPaint?.color = field
+        }
+    var shadowColor = 0
+        set(value) {
+            field = value
+            shadowPaint?.setShadowLayer(dipf(context, 4), 0f, 0f, shadowColor)
         }
 
     var bezierX = 0f
@@ -102,13 +110,14 @@ class BezierView : View {
             color = this@BezierView.color
         }
 
-        color = color
-
         shadowPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         shadowPaint?.apply {
             isAntiAlias = true
-            setShadowLayer(dipf(context, 4), 0f, 0f, -0x454546)
+            setShadowLayer(dipf(context, 4), 0f, 0f, shadowColor)
         }
+
+        color = color
+        shadowColor = shadowColor
 
         setLayerType(View.LAYER_TYPE_SOFTWARE, shadowPaint)
     }

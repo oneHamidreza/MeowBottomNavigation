@@ -21,6 +21,7 @@
         <attr name="mbn_countBackgroundColor" format="color" />
         <attr name="mbn_countTypeface" format="string" />
         <attr name="mbn_rippleColor" format="color" />
+        <attr name="mbn_shadowColor" format="color" />
     </declare-styleable>
 
 </resources>

@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {//todo add ic_launcher
+class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val ID_HOME = 1

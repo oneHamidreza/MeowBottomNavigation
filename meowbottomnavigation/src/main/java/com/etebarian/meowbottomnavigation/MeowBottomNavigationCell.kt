@@ -103,6 +103,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
         }
 
     var isFromLeft = false
+    var duration = 0L
     private var progress = 0f
         set(value) {
             field = value
@@ -201,10 +202,11 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
     }
 
     private fun animateProgress(enableCell: Boolean, isAnimate: Boolean = true) {
+        val d = if (enableCell) duration else 250
         val anim = ValueAnimator.ofFloat(0f, 1f)
         anim.apply {
-            startDelay = if (enableCell) 250L else 0L
-            duration = if (isAnimate) 500L else 1L
+            startDelay = if (enableCell) d / 4 else 0L
+            duration = if (isAnimate) d else 1L
             interpolator = FastOutSlowInInterpolator()
             addUpdateListener {
                 val f = it.animatedFraction

@@ -41,5 +41,17 @@ class MainActivity : AppCompatActivity() {//todo add ic_launcher
             }
             tv_selected.text = "$name page is selected"
         }
+
+        bottomNavigation.setOnClickMenuListener {
+            val name = when (it.id) {
+                ID_HOME -> "HOME"
+                ID_EXPLORE -> "EXPLORE"
+                ID_MESSAGE -> "MESSAGE"
+                ID_NOTIFICATION -> "NOTIFICATION"
+                ID_ACCOUNT -> "ACCOUNT"
+                else -> ""
+            }
+//            Toast.makeText(this, "$name is clicked", Toast.LENGTH_SHORT).show()
+        }
     }
 }

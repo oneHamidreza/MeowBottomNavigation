@@ -47,7 +47,7 @@ class MeowBottomNavigation : FrameLayout {
     private lateinit var bezierView: BezierView
 
     init {
-        heightCell = dip(context, 68)
+        heightCell = dip(context, 72)
     }
 
     constructor(context: Context) : super(context) {
@@ -163,7 +163,14 @@ class MeowBottomNavigation : FrameLayout {
     private fun anim(cell: MeowBottomNavigationCell, id: Int, enableAnimation: Boolean = true) {
         isAnimating = true
 
-        val animDuration = if (enableAnimation) 750L else 1L
+        val pos = getModelPosition(id)
+        val nowPos = getModelPosition(selectedId)
+
+        val nPos = if (nowPos < 0) 0 else nowPos
+        val dif = Math.abs(pos - nPos)
+        val d = (dif) * 100L + 150L
+
+        val animDuration = if (enableAnimation) d else 1L
         val animInterpolator = FastOutSlowInInterpolator()
 
         val anim = ValueAnimator.ofFloat(0f, 1f)
@@ -184,8 +191,6 @@ class MeowBottomNavigation : FrameLayout {
             start()
         }
 
-        val pos = getModelPosition(id)
-        val nowPos = getModelPosition(selectedId)
         if (Math.abs(pos - nowPos) > 1) {
             val progressAnim = ValueAnimator.ofFloat(0f, 1f)
             progressAnim.apply {
@@ -200,6 +205,9 @@ class MeowBottomNavigation : FrameLayout {
         }
 
         cell.isFromLeft = pos > nowPos
+        cells.forEach {
+            it.duration = d
+        }
     }
 
     fun isShowing(id: Int): Boolean {

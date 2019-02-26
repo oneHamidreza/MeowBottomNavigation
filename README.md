@@ -1,5 +1,37 @@
 # Meow Bottom Navigation
 An simple & beautiful navigation bottom for Android written in kotlin
-
-# Screenshots
 ![](https://github.com/shetmobile/MeowBottomNavigation/raw/master/resources/meow-bottom-navigation.gif)
+
+# Download
+build.gradle (project path)
+```groovy
+buildscript {
+    repositories {
+        jcenter() // this line need
+    }
+    ....
+}
+```
+build.gradle (module path)
+```groovy
+dependencies {
+  implementation 'com.etebarian:meow-bottom-navigation:1.0.0'
+}
+```
+# Usage
+add Meow Bottom Navigation in xml
+```xml
+    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+```
+
+add menu items in code
+remember icons must be vector drawable
+```kotlin
+val bottomNavigation = findView(R.id.bottomNavigation)
+bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_home))
+bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_explore))
+bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
+....
+```

@@ -37,7 +37,7 @@ bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
 ....
 ```
 
-#Customization
+# Customization
 ```xml
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:layout_width="match_parent"

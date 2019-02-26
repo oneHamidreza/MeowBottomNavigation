@@ -107,7 +107,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
     private var progress = 0f
         set(value) {
             field = value
-            fl.y = (1f - progress) * dip(context, 18) + dip(context, 8)
+            fl.y = (1f - progress) * dip(context, 18) + dip(context, 10)
 
             iv.color = if (progress == 1f) selectedIconColor else defaultIconColor
             val scale = (1f - progress) * (-0.2f) + 1f
@@ -124,7 +124,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
 
             val m = dip(context, 24)
             v_circle.x = (1f - progress) * (if (isFromLeft) -m else m) + ((measuredWidth - dip(context, 48)) / 2f)
-            v_circle.y = (1f - progress) * measuredHeight + dip(context, 4)
+            v_circle.y = (1f - progress) * measuredHeight + dip(context, 6)
 
 
         }

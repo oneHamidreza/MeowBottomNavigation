@@ -1,5 +1,5 @@
 # Meow Bottom Navigation
-A simple & beautiful & material navigation bottom for Android written in kotlin
+A simple & curved & material navigation bottom for Android written in kotlin
 ![](https://github.com/shetmobile/MeowBottomNavigation/raw/master/resources/meow-bottom-navigation.gif)
 
 # Download

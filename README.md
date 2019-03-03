@@ -18,6 +18,12 @@ dependencies {
   implementation 'com.etebarian:meow-bottom-navigation:1.0.0'
 }
 ```
+use androidx by adding this lines to gradle.properties
+```properties
+android.useAndroidX=true
+android.enableJetifier=true
+```
+
 # Usage
 add Meow Bottom Navigation in xml
 ```xml

@@ -57,3 +57,12 @@ bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
         app:mbn_selectedIconColor="#3c415e"
         app:mbn_shadowColor="#1f212121"/>
 ```
+
+# Listeners
+```kotlin
+        bottomNavigation.setOnShowListener {
+        }
+       
+        bottomNavigation.setOnClickMenuListener {
+        }
+```

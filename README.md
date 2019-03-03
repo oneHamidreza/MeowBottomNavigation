@@ -60,9 +60,9 @@ bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
 
 # Listeners
 ```kotlin
-        bottomNavigation.setOnShowListener {
-        }
+bottomNavigation.setOnShowListener {
+}
        
-        bottomNavigation.setOnClickMenuListener {
-        }
+bottomNavigation.setOnClickMenuListener {
+}
 ```

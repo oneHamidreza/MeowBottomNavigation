@@ -1,8 +1,9 @@
 # Meow Bottom Navigation
 A simple & curved & material navigation bottom for Android written in kotlin
+
 ![](https://github.com/shetmobile/MeowBottomNavigation/raw/master/resources/meow-bottom-navigation.gif)
 
-# Download
+## Download
 build.gradle (project path)
 ```groovy
 buildscript {
@@ -24,7 +25,7 @@ android.useAndroidX=true
 android.enableJetifier=true
 ```
 
-# Usage
+## Usage
 add Meow Bottom Navigation in xml
 ```xml
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
@@ -43,7 +44,7 @@ bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
 ....
 ```
 
-# Customization
+## Customization
 ```xml
     <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:layout_width="match_parent"
@@ -58,7 +59,7 @@ bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
         app:mbn_shadowColor="#1f212121"/>
 ```
 
-# Listeners
+## Listeners
 ```kotlin
 bottomNavigation.setOnShowListener {
 }

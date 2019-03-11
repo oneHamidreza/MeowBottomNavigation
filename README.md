@@ -16,7 +16,7 @@ buildscript {
 build.gradle (module path)
 ```groovy
 dependencies {
-  implementation 'com.etebarian:meow-bottom-navigation:1.0.0'
+  implementation 'com.etebarian:meow-bottom-navigation:1.0.1'
 }
 ```
 use androidx by adding this lines to gradle.properties

@@ -23,8 +23,8 @@ internal typealias IBottomNavigationListener = (model: MeowBottomNavigation.Mode
 @Suppress("MemberVisibilityCanBePrivate")
 class MeowBottomNavigation : FrameLayout {
 
-    private var models = ArrayList<Model>()
-    private var cells = ArrayList<MeowBottomNavigationCell>()
+    var models = ArrayList<Model>()
+    var cells = ArrayList<MeowBottomNavigationCell>()
 
     private var selectedId = -1
 

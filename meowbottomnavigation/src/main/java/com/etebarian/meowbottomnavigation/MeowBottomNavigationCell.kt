@@ -59,7 +59,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
             }
         }
 
-    private var iconSize = dip(context, 24)
+    private var iconSize = dip(context, 48)
         set(value) {
             field = value
             if (allowDraw) {
@@ -107,7 +107,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
     private var progress = 0f
         set(value) {
             field = value
-            fl.y = (1f - progress) * dip(context, 18) + dip(context, 10)
+            fl.y = (1f - progress) * dip(context, 18) + dip(context, -2)
 
             iv.color = if (progress == 1f) selectedIconColor else defaultIconColor
             val scale = (1f - progress) * (-0.2f) + 1f
@@ -125,8 +125,6 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
             val m = dip(context, 24)
             v_circle.x = (1f - progress) * (if (isFromLeft) -m else m) + ((measuredWidth - dip(context, 48)) / 2f)
             v_circle.y = (1f - progress) * measuredHeight + dip(context, 6)
-
-
         }
 
     var isEnabledCell = false
@@ -141,6 +139,14 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
                 fl.runAfterDelay(200) {
                     fl.setBackgroundColor(Color.TRANSPARENT)
                 }
+            }
+        }
+
+    var onClickListener: () -> Unit = {}
+        set(value) {
+            field = value
+            iv?.setOnClickListener {
+                onClickListener()
             }
         }
 
@@ -182,6 +188,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
         countBackgroundColor = countBackgroundColor
         countTypeface = countTypeface
         rippleColor = rippleColor
+        onClickListener = onClickListener
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

@@ -128,8 +128,8 @@ class BezierView : View {
         width = View.MeasureSpec.getSize(widthMeasureSpec).toFloat()
         height = View.MeasureSpec.getSize(heightMeasureSpec).toFloat()
         bezierOuterWidth = dipf(context, 72)
-        bezierOuterHeight = dipf(context, 12)
-        bezierInnerWidth = dipf(context, 108)
+        bezierOuterHeight = dipf(context, 8)
+        bezierInnerWidth = dipf(context, 124)
         bezierInnerHeight = dipf(context, 16)
 
         val extra = shadowHeight

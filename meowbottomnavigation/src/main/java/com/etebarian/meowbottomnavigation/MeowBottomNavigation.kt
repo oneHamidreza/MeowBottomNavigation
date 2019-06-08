@@ -43,6 +43,7 @@ class MeowBottomNavigation : FrameLayout {
     private var countTypeface: Typeface? = null
     private var rippleColor = Color.parseColor("#757575")
 
+    @Suppress("PrivatePropertyName")
     private lateinit var ll_cells: LinearLayout
     private lateinit var bezierView: BezierView
 
@@ -77,7 +78,7 @@ class MeowBottomNavigation : FrameLayout {
                 rippleColor = getColor(R.styleable.MeowBottomNavigation_mbn_rippleColor, rippleColor)
                 shadowColor = getColor(R.styleable.MeowBottomNavigation_mbn_shadowColor, shadowColor)
 
-                if (typeface != null && !typeface.isEmpty())
+                if (typeface != null && typeface.isNotEmpty())
                     countTypeface = Typeface.createFromAsset(context.assets, typeface)
             }
         } finally {
@@ -88,7 +89,7 @@ class MeowBottomNavigation : FrameLayout {
     private fun initializeViews() {
         ll_cells = LinearLayout(context)
         ll_cells.apply {
-            val params = FrameLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heightCell)
+            val params = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heightCell)
             params.gravity = Gravity.BOTTOM
             layoutParams = params
             orientation = LinearLayout.HORIZONTAL
@@ -98,7 +99,7 @@ class MeowBottomNavigation : FrameLayout {
 
         bezierView = BezierView(context)
         bezierView.apply {
-            layoutParams = FrameLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heightCell)
+            layoutParams = LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, heightCell)
             color = backgroundBottomColor
             shadowColor = this@MeowBottomNavigation.shadowColor
         }
@@ -131,11 +132,11 @@ class MeowBottomNavigation : FrameLayout {
             rippleColor = this@MeowBottomNavigation.rippleColor
             defaultIconColor = this@MeowBottomNavigation.defaultIconColor
             selectedIconColor = this@MeowBottomNavigation.selectedIconColor
-            setOnClickListener {
-                if (cell.isEnabledCell || isAnimating)
-                    return@setOnClickListener
-                show(model.id)
-                mOnClickedListener(model)
+            onClickListener = {
+                if (!cell.isEnabledCell && !isAnimating) {
+                    show(model.id)
+                    mOnClickedListener(model)
+                }
             }
             disableCell()
             ll_cells.addView(this)

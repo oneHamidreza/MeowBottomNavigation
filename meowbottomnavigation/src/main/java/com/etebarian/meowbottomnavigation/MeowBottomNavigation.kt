@@ -25,6 +25,7 @@ class MeowBottomNavigation : FrameLayout {
 
     var models = ArrayList<Model>()
     var cells = ArrayList<MeowBottomNavigationCell>()
+    var callListenerWhenIsSelected = false
 
     private var selectedId = -1
 
@@ -136,6 +137,9 @@ class MeowBottomNavigation : FrameLayout {
                 if (!cell.isEnabledCell && !isAnimating) {
                     show(model.id)
                     mOnClickedListener(model)
+                } else {
+                    if (callListenerWhenIsSelected)
+                        mOnClickedListener(model)
                 }
             }
             disableCell()

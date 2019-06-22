@@ -31,7 +31,9 @@
             android:layout_height="16dp"
             android:layout_gravity="top|end|right"
             android:gravity="center"
+            android:layout_marginTop="4dp"
             android:includeFontPadding="false"
+            android:textDirection="ltr"
             android:minWidth="16dp"
             android:textSize="8dp"
             tools:ignore="RtlHardcoded,SpUsage" />

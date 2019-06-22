@@ -1,7 +1,12 @@
 package com.etebarian.meowbottomnavigaion
 
+import android.annotation.SuppressLint
+import android.annotation.TargetApi
+import android.content.Context
 import android.graphics.Typeface
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 import kotlinx.android.synthetic.main.activity_main.*
@@ -16,6 +21,17 @@ class MainActivity : AppCompatActivity() {
         private const val ID_ACCOUNT = 5
     }
 
+    @SuppressLint("NewApi")
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    override fun attachBaseContext(newBase: Context?) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            super.attachBaseContext(MyContextWrapper.wrap(newBase, "fa"))
+        } else {
+            super.attachBaseContext(newBase)
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -28,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation.add(MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification))
         bottomNavigation.add(MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account))
 
-        bottomNavigation.setCount(ID_NOTIFICATION, "3")
+        bottomNavigation.setCount(ID_NOTIFICATION, "115")
 
         bottomNavigation.setOnShowListener {
             val name = when (it.id) {

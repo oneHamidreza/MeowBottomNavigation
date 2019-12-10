@@ -54,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                     ID_ACCOUNT -> "ACCOUNT"
                     else -> ""
                 }
-                tvSelected.text = "$name page is selected"
+
+                tvSelected.text = getString(R.string.main_page_selected, name)
             }
 
             setOnClickMenuListener {

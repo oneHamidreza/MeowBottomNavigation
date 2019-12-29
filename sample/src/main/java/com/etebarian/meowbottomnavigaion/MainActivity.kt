@@ -3,8 +3,9 @@ package com.etebarian.meowbottomnavigaion
 import android.graphics.Typeface
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import com.etebarian.meowbottomnavigaion.databinding.ActivityMainBinding
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,40 +30,46 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
 
-        tv_selected.typeface = Typeface.createFromAsset(assets, "fonts/SourceSansPro-Regular.ttf")
+        val tvSelected = binding.tvSelected
+        tvSelected.typeface = Typeface.createFromAsset(assets, "fonts/SourceSansPro-Regular.ttf")
 
-        bottomNavigation.add(MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home))
-        bottomNavigation.add(MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore))
-        bottomNavigation.add(MeowBottomNavigation.Model(ID_MESSAGE, R.drawable.ic_message))
-        bottomNavigation.add(MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification))
-        bottomNavigation.add(MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account))
+        binding.bottomNavigation.apply {
 
-        bottomNavigation.setCount(ID_NOTIFICATION, "115")
+            add(MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home))
+            add(MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore))
+            add(MeowBottomNavigation.Model(ID_MESSAGE, R.drawable.ic_message))
+            add(MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification))
+            add(MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account))
 
-        bottomNavigation.setOnShowListener {
-            val name = when (it.id) {
-                ID_HOME -> "HOME"
-                ID_EXPLORE -> "EXPLORE"
-                ID_MESSAGE -> "MESSAGE"
-                ID_NOTIFICATION -> "NOTIFICATION"
-                ID_ACCOUNT -> "ACCOUNT"
-                else -> ""
+            setCount(ID_NOTIFICATION, "115")
+
+            setOnShowListener {
+                val name = when (it.id) {
+                    ID_HOME -> "HOME"
+                    ID_EXPLORE -> "EXPLORE"
+                    ID_MESSAGE -> "MESSAGE"
+                    ID_NOTIFICATION -> "NOTIFICATION"
+                    ID_ACCOUNT -> "ACCOUNT"
+                    else -> ""
+                }
+
+                tvSelected.text = getString(R.string.main_page_selected, name)
             }
-            tv_selected.text = "$name page is selected"
+
+            setOnClickMenuListener {
+                val name = when (it.id) {
+                    ID_HOME -> "HOME"
+                    ID_EXPLORE -> "EXPLORE"
+                    ID_MESSAGE -> "MESSAGE"
+                    ID_NOTIFICATION -> "NOTIFICATION"
+                    ID_ACCOUNT -> "ACCOUNT"
+                    else -> ""
+                }
+
+            }
         }
 
-        bottomNavigation.setOnClickMenuListener {
-            val name = when (it.id) {
-                ID_HOME -> "HOME"
-                ID_EXPLORE -> "EXPLORE"
-                ID_MESSAGE -> "MESSAGE"
-                ID_NOTIFICATION -> "NOTIFICATION"
-                ID_ACCOUNT -> "ACCOUNT"
-                else -> ""
-            }
-//            Toast.makeText(this, "$name is clicked", Toast.LENGTH_SHORT).show()
-        }
     }
 }

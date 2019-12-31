@@ -67,7 +67,6 @@ class MainActivity : AppCompatActivity() {
                     ID_ACCOUNT -> "ACCOUNT"
                     else -> ""
                 }
-
             }
         }
 

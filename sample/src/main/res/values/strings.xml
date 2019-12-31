@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">MeowBottomNavigaion</string>
+    <string name="app_name">MeowBottomNavigation</string>
     <string name="main_page_selected">%s page is selected</string>
 </resources>

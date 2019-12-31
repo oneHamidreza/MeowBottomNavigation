@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import kotlin.math.ceil
 
 /**
  * Created by 1HE on 2/23/2019.
@@ -61,7 +62,7 @@ internal class CellImageView : AppCompatImageView {
     private fun setAttributeFromXml(context: Context, attrs: AttributeSet) {
         val a = context.theme.obtainStyledAttributes(attrs, R.styleable.CellImageView, 0, 0)
         try {
-            a?.apply {
+            a.apply {
                 isBitmap = getBoolean(R.styleable.CellImageView_meow_imageview_isBitmap, isBitmap)
                 useColor = getBoolean(R.styleable.CellImageView_meow_imageview_useColor, useColor)
                 resource = getResourceId(R.styleable.CellImageView_meow_imageview_resource, resource)
@@ -72,7 +73,7 @@ internal class CellImageView : AppCompatImageView {
                 fitImage = getBoolean(R.styleable.CellImageView_meow_imageview_fitImage, fitImage)
             }
         } finally {
-            a?.recycle()
+            a.recycle()
         }
     }
 
@@ -135,7 +136,7 @@ internal class CellImageView : AppCompatImageView {
             val d = drawable
             if (d != null) {
                 val width = MeasureSpec.getSize(widthMeasureSpec)
-                val height = Math.ceil((width.toFloat() * d.intrinsicHeight.toFloat() / d.intrinsicWidth).toDouble()).toInt()
+                val height = ceil((width.toFloat() * d.intrinsicHeight.toFloat() / d.intrinsicWidth).toDouble()).toInt()
                 setMeasuredDimension(width, height)
             } else {
                 super.onMeasure(widthMeasureSpec, heightMeasureSpec)

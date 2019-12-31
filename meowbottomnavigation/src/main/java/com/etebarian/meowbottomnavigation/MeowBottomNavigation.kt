@@ -13,6 +13,7 @@ import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
+import kotlin.math.abs
 
 /**
  * Created by 1HE on 10/23/2018.
@@ -29,8 +30,8 @@ class MeowBottomNavigation : FrameLayout {
 
     private var selectedId = -1
 
-    private var mOnClickedListener: IBottomNavigationListener = {}
-    private var mOnShowListener: IBottomNavigationListener = {}
+    private var onClickedListener: IBottomNavigationListener = {}
+    private var onShowListener: IBottomNavigationListener = {}
 
     private var heightCell = 0
     private var isAnimating = false
@@ -69,7 +70,7 @@ class MeowBottomNavigation : FrameLayout {
     private fun setAttributeFromXml(context: Context, attrs: AttributeSet) {
         val a = context.theme.obtainStyledAttributes(attrs, R.styleable.MeowBottomNavigation, 0, 0)
         try {
-            a?.apply {
+            a.apply {
                 defaultIconColor = getColor(R.styleable.MeowBottomNavigation_mbn_defaultIconColor, defaultIconColor)
                 selectedIconColor = getColor(R.styleable.MeowBottomNavigation_mbn_selectedIconColor, selectedIconColor)
                 backgroundBottomColor = getColor(R.styleable.MeowBottomNavigation_mbn_backgroundBottomColor, backgroundBottomColor)
@@ -83,7 +84,7 @@ class MeowBottomNavigation : FrameLayout {
                     countTypeface = Typeface.createFromAsset(context.assets, typeface)
             }
         } finally {
-            a?.recycle()
+            a.recycle()
         }
     }
 
@@ -136,10 +137,10 @@ class MeowBottomNavigation : FrameLayout {
             onClickListener = {
                 if (!cell.isEnabledCell && !isAnimating) {
                     show(model.id)
-                    mOnClickedListener(model)
+                    onClickedListener(model)
                 } else {
                     if (callListenerWhenIsSelected)
-                        mOnClickedListener(model)
+                        onClickedListener(model)
                 }
             }
             disableCell()
@@ -157,7 +158,7 @@ class MeowBottomNavigation : FrameLayout {
             if (model.id == id) {
                 anim(cell, id, enableAnimation)
                 cell.enableCell()
-                mOnShowListener(model)
+                onShowListener(model)
             } else {
                 cell.disableCell()
             }
@@ -172,7 +173,7 @@ class MeowBottomNavigation : FrameLayout {
         val nowPos = getModelPosition(selectedId)
 
         val nPos = if (nowPos < 0) 0 else nowPos
-        val dif = Math.abs(pos - nPos)
+        val dif = abs(pos - nPos)
         val d = (dif) * 100L + 150L
 
         val animDuration = if (enableAnimation) d else 1L
@@ -196,7 +197,7 @@ class MeowBottomNavigation : FrameLayout {
             start()
         }
 
-        if (Math.abs(pos - nowPos) > 1) {
+        if (abs(pos - nowPos) > 1) {
             val progressAnim = ValueAnimator.ofFloat(0f, 1f)
             progressAnim.apply {
                 duration = animDuration
@@ -248,11 +249,11 @@ class MeowBottomNavigation : FrameLayout {
     }
 
     fun setOnShowListener(listener: IBottomNavigationListener) {
-        mOnShowListener = listener
+        onShowListener = listener
     }
 
     fun setOnClickMenuListener(listener: IBottomNavigationListener) {
-        mOnClickedListener = listener
+        onClickedListener = listener
     }
 
     class Model(var id: Int, var icon: Int) {

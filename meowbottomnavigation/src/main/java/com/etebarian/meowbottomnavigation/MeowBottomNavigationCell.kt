@@ -98,7 +98,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
         set(value) {
             field = value
             if (allowDraw) {
-
+                //todo
             }
         }
 

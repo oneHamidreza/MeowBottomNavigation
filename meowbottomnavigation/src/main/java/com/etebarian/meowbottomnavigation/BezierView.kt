@@ -119,14 +119,14 @@ class BezierView : View {
         color = color
         shadowColor = shadowColor
 
-        setLayerType(View.LAYER_TYPE_SOFTWARE, shadowPaint)
+        setLayerType(LAYER_TYPE_SOFTWARE, shadowPaint)
     }
 
     @SuppressLint("DrawAllocation")
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        width = View.MeasureSpec.getSize(widthMeasureSpec).toFloat()
-        height = View.MeasureSpec.getSize(heightMeasureSpec).toFloat()
+        width = MeasureSpec.getSize(widthMeasureSpec).toFloat()
+        height = MeasureSpec.getSize(heightMeasureSpec).toFloat()
         bezierOuterWidth = dipf(context, 72)
         bezierOuterHeight = dipf(context, 8)
         bezierInnerWidth = dipf(context, 124)

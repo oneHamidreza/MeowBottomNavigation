@@ -26,7 +26,8 @@ class MeowBottomNavigation : FrameLayout {
 
     var models = ArrayList<Model>()
     var cells = ArrayList<MeowBottomNavigationCell>()
-    var callListenerWhenIsSelected = false
+        private set
+    private var callListenerWhenIsSelected = false
 
     private var selectedId = -1
 
@@ -36,14 +37,45 @@ class MeowBottomNavigation : FrameLayout {
     private var heightCell = 0
     private var isAnimating = false
 
-    private var defaultIconColor = Color.parseColor("#757575")
-    private var selectedIconColor = Color.parseColor("#2196f3")
-    private var backgroundBottomColor = Color.parseColor("#ffffff")
+    var defaultIconColor = Color.parseColor("#757575")
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
+    var selectedIconColor = Color.parseColor("#2196f3")
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
+    var backgroundBottomColor = Color.parseColor("#ffffff")
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
+    var circleColor = Color.parseColor("#ffffff")
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
     private var shadowColor = -0x454546
-    private var countTextColor = Color.parseColor("#ffffff")
-    private var countBackgroundColor = Color.parseColor("#ff0000")
-    private var countTypeface: Typeface? = null
+    var countTextColor = Color.parseColor("#ffffff")
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
+    var countBackgroundColor = Color.parseColor("#ff0000")
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
+    var countTypeface: Typeface? = null
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
     private var rippleColor = Color.parseColor("#757575")
+
+    private var allowDraw = false
 
     @Suppress("PrivatePropertyName")
     private lateinit var ll_cells: LinearLayout
@@ -74,12 +106,13 @@ class MeowBottomNavigation : FrameLayout {
                 defaultIconColor = getColor(R.styleable.MeowBottomNavigation_mbn_defaultIconColor, defaultIconColor)
                 selectedIconColor = getColor(R.styleable.MeowBottomNavigation_mbn_selectedIconColor, selectedIconColor)
                 backgroundBottomColor = getColor(R.styleable.MeowBottomNavigation_mbn_backgroundBottomColor, backgroundBottomColor)
+                circleColor = getColor(R.styleable.MeowBottomNavigation_mbn_circleColor, circleColor)
                 countTextColor = getColor(R.styleable.MeowBottomNavigation_mbn_countTextColor, countTextColor)
                 countBackgroundColor = getColor(R.styleable.MeowBottomNavigation_mbn_countBackgroundColor, countBackgroundColor)
-                val typeface = getString(R.styleable.MeowBottomNavigation_mbn_countTypeface)
                 rippleColor = getColor(R.styleable.MeowBottomNavigation_mbn_rippleColor, rippleColor)
                 shadowColor = getColor(R.styleable.MeowBottomNavigation_mbn_shadowColor, shadowColor)
 
+                val typeface = getString(R.styleable.MeowBottomNavigation_mbn_countTypeface)
                 if (typeface != null && typeface.isNotEmpty())
                     countTypeface = Typeface.createFromAsset(context.assets, typeface)
             }
@@ -108,6 +141,7 @@ class MeowBottomNavigation : FrameLayout {
 
         addView(bezierView)
         addView(ll_cells)
+        allowDraw = true
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -127,13 +161,13 @@ class MeowBottomNavigation : FrameLayout {
             layoutParams = params
             icon = model.icon
             count = model.count
-            circleColor = this@MeowBottomNavigation.backgroundBottomColor
+            defaultIconColor = this@MeowBottomNavigation.defaultIconColor
+            selectedIconColor = this@MeowBottomNavigation.selectedIconColor
+            circleColor = this@MeowBottomNavigation.circleColor
             countTextColor = this@MeowBottomNavigation.countTextColor
             countBackgroundColor = this@MeowBottomNavigation.countBackgroundColor
             countTypeface = this@MeowBottomNavigation.countTypeface
             rippleColor = this@MeowBottomNavigation.rippleColor
-            defaultIconColor = this@MeowBottomNavigation.defaultIconColor
-            selectedIconColor = this@MeowBottomNavigation.selectedIconColor
             onClickListener = {
                 if (!cell.isEnabledCell && !isAnimating) {
                     show(model.id)
@@ -151,19 +185,20 @@ class MeowBottomNavigation : FrameLayout {
         models.add(model)
     }
 
-    fun show(id: Int, enableAnimation: Boolean = true) {
-        for (i in models.indices) {
-            val model = models[i]
-            val cell = cells[i]
-            if (model.id == id) {
-                anim(cell, id, enableAnimation)
-                cell.enableCell()
-                onShowListener(model)
-            } else {
-                cell.disableCell()
-            }
+    private fun updateAllIfAllowDraw() {
+        if (!allowDraw)
+            return
+
+        cells.forEach {
+            it.defaultIconColor = defaultIconColor
+            it.selectedIconColor = selectedIconColor
+            it.circleColor = circleColor
+            it.countTextColor = countTextColor
+            it.countBackgroundColor = countBackgroundColor
+            it.countTypeface = countTypeface
         }
-        selectedId = id
+
+        bezierView.color = backgroundBottomColor
     }
 
     private fun anim(cell: MeowBottomNavigationCell, id: Int, enableAnimation: Boolean = true) {
@@ -216,6 +251,21 @@ class MeowBottomNavigation : FrameLayout {
         }
     }
 
+    fun show(id: Int, enableAnimation: Boolean = true) {
+        for (i in models.indices) {
+            val model = models[i]
+            val cell = cells[i]
+            if (model.id == id) {
+                anim(cell, id, enableAnimation)
+                cell.enableCell()
+                onShowListener(model)
+            } else {
+                cell.disableCell()
+            }
+        }
+        selectedId = id
+    }
+
     fun isShowing(id: Int): Boolean {
         return selectedId == id
     }
@@ -246,6 +296,19 @@ class MeowBottomNavigation : FrameLayout {
         val pos = getModelPosition(id)
         model.count = count
         cells[pos].count = count
+    }
+
+    fun clearCount(id: Int) {
+        val model = getModelById(id) ?: return
+        val pos = getModelPosition(id)
+        model.count = MeowBottomNavigationCell.EMPTY_VALUE
+        cells[pos].count = MeowBottomNavigationCell.EMPTY_VALUE
+    }
+
+    fun clearAllCounts() {
+        models.forEach {
+            clearCount(it.id)
+        }
     }
 
     fun setOnShowListener(listener: IBottomNavigationListener) {

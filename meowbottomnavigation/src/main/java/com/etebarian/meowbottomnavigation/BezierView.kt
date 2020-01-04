@@ -35,11 +35,13 @@ class BezierView : View {
         set(value) {
             field = value
             mainPaint?.color = field
+            invalidate()
         }
     var shadowColor = 0
         set(value) {
             field = value
             shadowPaint?.setShadowLayer(dipf(context, 4), 0f, 0f, shadowColor)
+            invalidate()
         }
 
     var bezierX = 0f

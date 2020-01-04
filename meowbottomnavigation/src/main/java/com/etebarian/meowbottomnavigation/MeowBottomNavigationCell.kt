@@ -29,8 +29,23 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
     }
 
     var defaultIconColor = 0
+        set(value) {
+            field = value
+            if (allowDraw)
+                iv.color = if (!isEnabledCell) defaultIconColor else selectedIconColor
+        }
     var selectedIconColor = 0
+        set(value) {
+            field = value
+            if (allowDraw)
+                iv.color = if (isEnabledCell) selectedIconColor else defaultIconColor
+        }
     var circleColor = 0
+        set(value) {
+            field = value
+            if (allowDraw)
+                isEnabledCell = isEnabledCell
+        }
 
     var icon = 0
         set(value) {
@@ -98,7 +113,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
         set(value) {
             field = value
             if (allowDraw) {
-                //todo
+                isEnabledCell = isEnabledCell
             }
         }
 

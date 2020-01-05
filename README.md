@@ -63,9 +63,9 @@ add vectorDrawables.useSupportLibrary = true to your build.gradle inside default
         app:mbn_selectedIconColor="#3c415e"
         app:mbn_shadowColor="#1f212121"/>
 ```
+- You can change this properties in **Kotlin/Java** Realtime⌚. 
 
 ## Listeners
-
 kotlin
 ```kotlin
 bottomNavigation.setOnShowListener {
@@ -96,7 +96,6 @@ bottomNavigation.setOnShowListener(new Function1<MeowBottomNavigation.Model, Uni
 ```
 
 ## Counter Badge
-
 Setting One Tab
 ```kotlin
 bottomNavigation.setCount(TAB_ID, STRING)
@@ -113,7 +112,6 @@ bottomNavigation.clearAllCounts(TAB_ID)
 ```
 
 ## Set Default Tab
-
 use this function
 ```kotlin
 bottomNavigation.show(TAB_ID)

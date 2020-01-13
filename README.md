@@ -1,5 +1,5 @@
 # Meow Bottom Navigation
-A simple & curved & material bottom navigation for Android written in kotlin
+A simple & curved & material bottom navigation for Android written in kotlin.
 
 ![](https://github.com/shetmobile/MeowBottomNavigation/raw/master/resources/Preview.gif)
 
@@ -18,12 +18,12 @@ dependencies {
   implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
 }
 ```
-use androidx by adding this lines to gradle.properties. if you want more info, just google **AndroidX**
+Use androidx by adding this lines to gradle.properties. if you want more info, just google **AndroidX**.
 ```properties
 android.useAndroidX=true
 android.enableJetifier=true
 ```
-if you want to add this library to a JAVA Project, you must add kotlin library to build.gradle
+If you want to add this library to a JAVA Project, you must add kotlin library to build.gradle.
 ```groovy
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61"
@@ -31,26 +31,26 @@ dependencies {
 ```
 
 ## Usage
-add Meow Bottom Navigation in xml
+Add Meow Bottom Navigation in xml
 ```xml
-    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+<com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 ```
 
-add menu items in code.
+Add menu items in code.
 ```kotlin
 val bottomNavigation = findView(R.id.bottomNavigation)
 bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_home))
 bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_explore))
 bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
 ```
-remember that icons must be vector drawable. 
-add vectorDrawables.useSupportLibrary = true to your build.gradle inside defaultConfig{ ... }
+Remember that icons must be vector drawable. 
+Add vectorDrawables.useSupportLibrary = true to your build.gradle inside defaultConfig{ ... }
 
 ## Customization
 ```xml
-    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+<com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:mbn_circleColor="#ffffff"
@@ -63,9 +63,9 @@ add vectorDrawables.useSupportLibrary = true to your build.gradle inside default
         app:mbn_selectedIconColor="#3c415e"
         app:mbn_shadowColor="#1f212121"/>
 ```
+- You can change this properties in **Kotlin/Java** Realtime⌚. 
 
 ## Listeners
-
 kotlin
 ```kotlin
 bottomNavigation.setOnShowListener {
@@ -96,7 +96,6 @@ bottomNavigation.setOnShowListener(new Function1<MeowBottomNavigation.Model, Uni
 ```
 
 ## Counter Badge
-
 Setting One Tab
 ```kotlin
 bottomNavigation.setCount(TAB_ID, STRING)
@@ -113,8 +112,7 @@ bottomNavigation.clearAllCounts(TAB_ID)
 ```
 
 ## Set Default Tab
-
-use this function
+Use this function
 ```kotlin
 bottomNavigation.show(TAB_ID)
 ```

@@ -33,6 +33,7 @@ class MeowBottomNavigation : FrameLayout {
 
     private var onClickedListener: IBottomNavigationListener = {}
     private var onShowListener: IBottomNavigationListener = {}
+    private var onReselectListener: IBottomNavigationListener = {}
 
     private var heightCell = 0
     private var isAnimating = false
@@ -169,6 +170,9 @@ class MeowBottomNavigation : FrameLayout {
             countTypeface = this@MeowBottomNavigation.countTypeface
             rippleColor = this@MeowBottomNavigation.rippleColor
             onClickListener = {
+                if (isShowing(model.id)) // added for https://github.com/shetmobile/MeowBottomNavigation/issues/39
+                    onReselectListener(model)
+
                 if (!cell.isEnabledCell && !isAnimating) {
                     show(model.id)
                     onClickedListener(model)
@@ -317,6 +321,10 @@ class MeowBottomNavigation : FrameLayout {
 
     fun setOnClickMenuListener(listener: IBottomNavigationListener) {
         onClickedListener = listener
+    }
+
+    fun setOnReselectListener(listener: IBottomNavigationListener) {
+        onReselectListener = listener
     }
 
     class Model(var id: Int, var icon: Int) {

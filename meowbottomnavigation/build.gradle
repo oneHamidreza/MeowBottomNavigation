@@ -7,8 +7,8 @@ apply plugin: 'kotlin-android-extensions'
 
 def library_groupId = 'com.etebarian'
 def library_artifactId = 'meow-bottom-navigation'
-def library_versionCode = 1_0_01_01_00
-def library_versionName = '1.1.0'
+def library_versionCode = 1_0_01_02_00
+def library_versionName = '1.2.0'
 
 publish {
 

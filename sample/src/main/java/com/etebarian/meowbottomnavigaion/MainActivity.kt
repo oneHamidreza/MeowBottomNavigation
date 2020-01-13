@@ -2,6 +2,7 @@ package com.etebarian.meowbottomnavigaion
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.etebarian.meowbottomnavigaion.databinding.ActivityMainBinding
@@ -68,6 +69,11 @@ class MainActivity : AppCompatActivity() {
                     else -> ""
                 }
             }
+
+            setOnReselectListener {
+                Toast.makeText(context, "item ${it.id} is reselected.", Toast.LENGTH_LONG).show()
+            }
+
         }
 
     }

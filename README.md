@@ -33,7 +33,7 @@ dependencies {
 ## Usage
 Add Meow Bottom Navigation in xml
 ```xml
-    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+<com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 ```
@@ -50,7 +50,7 @@ Add vectorDrawables.useSupportLibrary = true to your build.gradle inside default
 
 ## Customization
 ```xml
-    <com.etebarian.meowbottomnavigation.MeowBottomNavigation
+<com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:mbn_circleColor="#ffffff"

@@ -1,7 +1,10 @@
 # Meow Bottom Navigation
-A simple & curved & material bottom navigation for Android written in kotlin.
+A simple & curved & material bottom navigation for Android written in **Kotlin** with ♥ .
 
 ![](https://github.com/shetmobile/MeowBottomNavigation/raw/master/resources/Preview.gif)
+
+  
+> CAUTION : if you are **Java** developer and have problems with Kotlin, so check this link: https://github.com/shetmobile/MeowBottomNavigationJava
 
 ## Download
 build.gradle (project path)

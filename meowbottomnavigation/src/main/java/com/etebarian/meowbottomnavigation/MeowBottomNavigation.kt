@@ -160,8 +160,7 @@ class MeowBottomNavigation : FrameLayout {
     }
 
     fun add(model: Model) {
-        val cell = MeowBottomNavigationCell(context)
-        cell.useOriginColor = model.useOriginColor
+        val cell = MeowBottomNavigationCell(context, model.useOriginColor)
         cell.apply {
             val params = LinearLayout.LayoutParams(0, heightCell, 1f)
             layoutParams = params

@@ -38,9 +38,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigation.apply {
 
-            val home = MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home)
+            val home = MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_nav_logo, useOriginColor = true)
 
-            val explorer = MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore, useOriginColor = true)
+            val explorer = MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore)
 
             val notification = MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification)
 

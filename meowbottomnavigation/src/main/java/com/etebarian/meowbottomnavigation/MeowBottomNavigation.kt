@@ -161,6 +161,7 @@ class MeowBottomNavigation : FrameLayout {
 
     fun add(model: Model) {
         val cell = MeowBottomNavigationCell(context)
+        cell.useOriginColor = model.useOriginColor
         cell.apply {
             val params = LinearLayout.LayoutParams(0, heightCell, 1f)
             layoutParams = params
@@ -350,7 +351,7 @@ class MeowBottomNavigation : FrameLayout {
         }, animDuration + 200L)
     }
 
-    class Model(var id: Int, var icon: Int, var endAnimation: (() -> Unit)? = null) {
+    class Model(var id: Int, var icon: Int, var endAnimation: (() -> Unit)? = null, var useOriginColor: Boolean = false) {
         var count: String = MeowBottomNavigationCell.EMPTY_VALUE
     }
 }

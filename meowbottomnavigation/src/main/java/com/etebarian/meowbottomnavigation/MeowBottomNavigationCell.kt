@@ -124,7 +124,9 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
             field = value
             fl.y = (1f - progress) * dip(context, 18) + dip(context, -2)
 
-            iv.color = if (progress == 1f) selectedIconColor else defaultIconColor
+            if (useOriginColor) {
+                iv.color = if (progress == 1f) selectedIconColor else defaultIconColor
+            }
             val scale = (1f - progress) * (-0.2f) + 1f
             iv.scaleX = scale
             iv.scaleY = scale
@@ -167,6 +169,8 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
 
     override lateinit var containerView: View
     private var allowDraw = false
+
+    var useOriginColor = false
 
     constructor(context: Context) : super(context) {
         initializeView()

@@ -38,17 +38,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigation.apply {
 
-            val home = MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home) {
-                Toast.makeText(this@MainActivity, "home", Toast.LENGTH_SHORT).show()
-            }
+            val home = MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home)
 
-            val explorer = MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore) {
-                Toast.makeText(this@MainActivity, "explorer", Toast.LENGTH_SHORT).show()
-            }
+            val explorer = MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore, useOriginColor = true)
 
-            val notification = MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification) {
-                Toast.makeText(this@MainActivity, "notification", Toast.LENGTH_SHORT).show()
-            }
+            val notification = MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification)
 
             add(home)
             add(explorer)

@@ -7,6 +7,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Build
+import android.os.Handler
 import android.util.AttributeSet
 import android.util.LayoutDirection
 import android.view.Gravity
@@ -77,6 +78,9 @@ class MeowBottomNavigation : FrameLayout {
     private var rippleColor = Color.parseColor("#757575")
 
     private var allowDraw = false
+    private var animDuration = 1L
+    private var isCustomAnimDuration = false
+    private var customDuration = 1L
 
     @Suppress("PrivatePropertyName")
     private lateinit var ll_cells: LinearLayout
@@ -156,7 +160,7 @@ class MeowBottomNavigation : FrameLayout {
     }
 
     fun add(model: Model) {
-        val cell = MeowBottomNavigationCell(context)
+        val cell = MeowBottomNavigationCell(context, model.useOriginColor)
         cell.apply {
             val params = LinearLayout.LayoutParams(0, heightCell, 1f)
             layoutParams = params
@@ -170,15 +174,18 @@ class MeowBottomNavigation : FrameLayout {
             countTypeface = this@MeowBottomNavigation.countTypeface
             rippleColor = this@MeowBottomNavigation.rippleColor
             onClickListener = {
-                if (isShowing(model.id)) // added for https://github.com/shetmobile/MeowBottomNavigation/issues/39
+                if (isShowing(model.id)) {
+                    // added for https://github.com/shetmobile/MeowBottomNavigation/issues/39
                     onReselectListener(model)
+                }
 
                 if (!cell.isEnabledCell && !isAnimating) {
                     show(model.id)
                     onClickedListener(model)
                 } else {
-                    if (callListenerWhenIsSelected)
+                    if (callListenerWhenIsSelected) {
                         onClickedListener(model)
+                    }
                 }
             }
             disableCell()
@@ -215,7 +222,8 @@ class MeowBottomNavigation : FrameLayout {
         val dif = abs(pos - nPos)
         val d = (dif) * 100L + 150L
 
-        val animDuration = if (enableAnimation) d else 1L
+        //animDuration = if (enableAnimation) d else 1L
+        animDuration = if (isCustomAnimDuration) customDuration else if (enableAnimation) d else 1L
         val animInterpolator = FastOutSlowInInterpolator()
 
         val anim = ValueAnimator.ofFloat(0f, 1f)
@@ -262,7 +270,11 @@ class MeowBottomNavigation : FrameLayout {
             if (model.id == id) {
                 anim(cell, id, enableAnimation)
                 cell.enableCell()
-                onShowListener(model)
+                onShowListener(model).apply {
+                    simpleDelay {
+                        model.endAnimation?.invoke()
+                    }
+                }
             } else {
                 cell.disableCell()
             }
@@ -327,9 +339,18 @@ class MeowBottomNavigation : FrameLayout {
         onReselectListener = listener
     }
 
-    class Model(var id: Int, var icon: Int) {
+    fun animDuration(animDuration: Long) {
+        isCustomAnimDuration = true
+        this.animDuration = animDuration
+    }
 
+    private fun simpleDelay(action: () -> Unit) {
+        Handler().postDelayed({
+            action.invoke()
+        }, animDuration + 200L)
+    }
+
+    class Model(var id: Int, var icon: Int, var endAnimation: (() -> Unit)? = null, var useOriginColor: Boolean = false) {
         var count: String = MeowBottomNavigationCell.EMPTY_VALUE
-
     }
 }

@@ -12,6 +12,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import kotlinx.android.extensions.LayoutContainer
@@ -125,6 +126,7 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
             fl.y = (1f - progress) * dip(context, 18) + dip(context, -2)
 
             iv.color = if (progress == 1f) selectedIconColor else defaultIconColor
+            //iv.color = iv.color
             val scale = (1f - progress) * (-0.2f) + 1f
             iv.scaleX = scale
             iv.scaleY = scale
@@ -168,8 +170,8 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
     override lateinit var containerView: View
     private var allowDraw = false
 
-    constructor(context: Context) : super(context) {
-        initializeView()
+    constructor(context: Context, useOriginColor: Boolean = false) : super(context) {
+        initializeView(!useOriginColor)
     }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
@@ -186,10 +188,11 @@ class MeowBottomNavigationCell : RelativeLayout, LayoutContainer {
     private fun setAttributeFromXml(context: Context, attrs: AttributeSet) {
     }
 
-    private fun initializeView() {
+    private fun initializeView(useOriginColor: Boolean = false) {
         allowDraw = true
         containerView = LayoutInflater.from(context).inflate(R.layout.meow_navigation_cell, this)
         draw()
+        iv.useColor = useOriginColor
     }
 
     private fun draw() {

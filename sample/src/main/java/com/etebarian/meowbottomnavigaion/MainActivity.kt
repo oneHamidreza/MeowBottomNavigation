@@ -38,10 +38,16 @@ class MainActivity : AppCompatActivity() {
 
         binding.bottomNavigation.apply {
 
-            add(MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home))
-            add(MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore))
+            val home = MeowBottomNavigation.Model(ID_HOME, R.drawable.ic_home, useOriginColor = true)
+
+            val explorer = MeowBottomNavigation.Model(ID_EXPLORE, R.drawable.ic_explore)
+
+            val notification = MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification)
+
+            add(home)
+            add(explorer)
             add(MeowBottomNavigation.Model(ID_MESSAGE, R.drawable.ic_message))
-            add(MeowBottomNavigation.Model(ID_NOTIFICATION, R.drawable.ic_notification))
+            add(notification)
             add(MeowBottomNavigation.Model(ID_ACCOUNT, R.drawable.ic_account))
 
             setCount(ID_NOTIFICATION, "115")

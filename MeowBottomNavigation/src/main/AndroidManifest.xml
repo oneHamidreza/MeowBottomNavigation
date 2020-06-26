@@ -1,2 +1,1 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.etebarian.meowbottomnavigation" />
+<manifest package="com.etebarian.meowbottomnavigation" />

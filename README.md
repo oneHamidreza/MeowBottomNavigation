@@ -3,11 +3,10 @@ A simple & curved & material bottom navigation for Android written in **Kotlin**
 
 ![](https://github.com/shetmobile/MeowBottomNavigation/raw/master/resources/Preview.gif)
 
-  
-> CAUTION : if you are **Java** developer and have problems with Kotlin, so check this link: https://github.com/oneHamidreza/MeowBottomNavigationJava
-
 ## Download
-build.gradle (project path)
+
+Update your `build.gradle` (project path) like below :
+
 ```groovy
 buildscript {
     repositories {
@@ -15,43 +14,63 @@ buildscript {
     }
 }
 ```
-build.gradle (module path)
+
+Update your `build.gradle` (module path) like below :
+
 ```groovy
 dependencies {
-  implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
+  implementation 'com.etebarian:meow-bottom-navigation:1.3.0'
 }
 ```
-Use androidx by adding this lines to gradle.properties. if you want more info, just google **AndroidX**.
+
+Use androidx by adding this lines to `gradle.properties`. If you want more info, just google **AndroidX**.
+
 ```properties
 android.useAndroidX=true
 android.enableJetifier=true
 ```
-If you want to add this library to a JAVA Project, you must add kotlin library to build.gradle.
+
+If you want to add this library to a JAVA Project, you must add kotlin library to `build.gradle`.
+
 ```groovy
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.61"
 }
 ```
+## 😍 Donate & Support
+
+We are developing this framework in open source community without financial planning but the maintenance & preparing updates at periodic times is Time-consuming.
+If you like this project and you want to give us peace of mind, you can support us by clicking this button :
+
+<p>
+<a href="https://paypal.me/imehrzadm">
+<img width="20%" src="https://raw.githubusercontent.com/oneHamidreza/Meow-Framework-MVVM/master/Resources/img_support.png"/>
+</a>
+</p>
 
 ## Usage
-Add Meow Bottom Navigation in xml
+
+Add Meow Bottom Navigation in you layout xml file.
+
 ```xml
-<com.etebarian.meowbottomnavigation.MeowBottomNavigation
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+<meow.meowbottomnavigation.MeowBottomNavigation
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
 ```
 
 Add menu items in code.
+
 ```kotlin
 val bottomNavigation = findView(R.id.bottomNavigation)
 bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_home))
 bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_explore))
 bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
 ```
-Remember that icons must be vector drawable. 
-Add vectorDrawables.useSupportLibrary = true to your build.gradle inside defaultConfig{ ... }
+
+Add vectorDrawables.useSupportLibrary = true to your build.gradle inside `defaultConfig{ ... }` to use vector drawable icons.
 
 ## Customization
+
 ```xml
 <com.etebarian.meowbottomnavigation.MeowBottomNavigation
         android:layout_width="match_parent"
@@ -66,20 +85,29 @@ Add vectorDrawables.useSupportLibrary = true to your build.gradle inside default
         app:mbn_selectedIconColor="#3c415e"
         app:mbn_shadowColor="#1f212121"/>
 ```
+
 - You can change this properties in **Kotlin/Java** Realtime⌚. 
 
 ## Listeners
-kotlin
+
+Use `setOnShowListener()` function to access when a cell has been shown.
+
 ```kotlin
 bottomNavigation.setOnShowListener {
     // YOUR CODES
 }
-       
+```
+
+Use `setOnClickMenuListener()` function to access when a cell has been clicked.
+
+```kotlin     
 bottomNavigation.setOnClickMenuListener {
     // YOUR CODES
 }
 ```
-java
+
+If you are Java Developer, use this examples :
+
 ```java
 bottomNavigation.setOnClickMenuListener(new Function1<MeowBottomNavigation.Model, Unit>() {
             @Override
@@ -99,23 +127,29 @@ bottomNavigation.setOnShowListener(new Function1<MeowBottomNavigation.Model, Uni
 ```
 
 ## Counter Badge
-Setting One Tab
+
+Set counter badge on a specific cell by `setCount(Int,String)`.
+
 ```kotlin
-bottomNavigation.setCount(TAB_ID, STRING)
+bottomNavigation.setCount(CELL_ID, YOUR_STRING)
 ```
 
-Clearing One Tab
+Clear counter badge on a specific cell by `clearCount(Int)`.
+
 ```kotlin
-bottomNavigation.clearCount(TAB_ID)
+bottomNavigation.clearCount(CELL_ID)
 ```
 
-Clearing All Tabs
+Clear all counter badges on a specific cell by `clearCount(Int)`.
+
 ```kotlin
 bottomNavigation.clearAllCounts(TAB_ID)
 ```
 
-## Set Default Tab
-Use this function
+## Set Default CELL
+
+Use this function :
+
 ```kotlin
-bottomNavigation.show(TAB_ID)
+bottomNavigation.show(CELL_ID)
 ```

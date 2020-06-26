@@ -107,5 +107,15 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        binding.btShow.setOnClickListener {
+            val id = try {
+                binding.etPageId.text.toString().toInt()
+            } catch (e: Exception) {
+                ID_HOME
+            }
+            if (id in ID_HOME..ID_ACCOUNT)
+                binding.bottomNavigation.show(id)
+        }
+
     }
 }

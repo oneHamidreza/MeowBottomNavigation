@@ -88,12 +88,12 @@ object AppConfig {
     }
 
     object Publishing {
-        const val name = "MeowBottomNavigation"
+        const val name = "meow-bottom-navigation"
         const val repo = "meow"
         const val developerId = "oneHamidreza"
         const val userOrg = "infinitydesign"
         const val groupId = "com.etebarian"
-        const val artifactId = "meowbottomnavigation"
+        const val artifactId = "meow-bottom-navigation"
         const val libraryDesc =
             "A simple & curved & material bottom navigation for Android written in Kotlin with ♥"
     }

@@ -242,9 +242,9 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
         progress = progress
     }
 
-    fun disableCell() {
+    fun disableCell(isAnimate: Boolean = true) {
         if (isEnabledCell)
-            animateProgress(false)
+            animateProgress(false, isAnimate)
         isEnabledCell = false
     }
 

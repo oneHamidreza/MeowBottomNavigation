@@ -45,7 +45,8 @@
             app:mbn_defaultIconColor="#90a4ae"
             app:mbn_rippleColor="#2f424242"
             app:mbn_selectedIconColor="#3c415e"
-            app:mbn_shadowColor="#1f212121" />
+            app:mbn_shadowColor="#1f212121"
+            app:mbn_hasAnimation="true" />
 
     </FrameLayout>
 

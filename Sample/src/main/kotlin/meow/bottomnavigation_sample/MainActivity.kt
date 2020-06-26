@@ -103,6 +103,8 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(context, "item ${it.id} is reselected.", Toast.LENGTH_LONG).show()
             }
 
+            show(ID_HOME)
+
         }
 
     }

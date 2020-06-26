@@ -95,6 +95,11 @@ class MeowBottomNavigation : FrameLayout {
             field = value
             updateAllIfAllowDraw()
         }
+    var hasAnimation: Boolean = true
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
     private var rippleColor = Color.parseColor("#757575")
 
     private var allowDraw = false
@@ -160,6 +165,9 @@ class MeowBottomNavigation : FrameLayout {
                 val typeface = getString(R.styleable.MeowBottomNavigation_mbn_countTypeface)
                 if (typeface != null && typeface.isNotEmpty())
                     countTypeface = Typeface.createFromAsset(context.assets, typeface)
+
+                hasAnimation =
+                    getBoolean(R.styleable.MeowBottomNavigation_mbn_hasAnimation, hasAnimation)
             }
         } finally {
             a.recycle()
@@ -221,14 +229,14 @@ class MeowBottomNavigation : FrameLayout {
                     onReselectListener(model)
 
                 if (!cell.isEnabledCell && !isAnimating) {
-                    show(model.id)
+                    show(model.id, hasAnimation)
                     onClickedListener(model)
                 } else {
                     if (callListenerWhenIsSelected)
                         onClickedListener(model)
                 }
             }
-            disableCell()
+            disableCell(hasAnimation)
             ll_cells.addView(this)
         }
 
@@ -262,7 +270,7 @@ class MeowBottomNavigation : FrameLayout {
         val dif = abs(pos - nPos)
         val d = (dif) * 100L + 150L
 
-        val animDuration = if (enableAnimation) d else 1L
+        val animDuration = if (enableAnimation && hasAnimation) d else 1L
         val animInterpolator = FastOutSlowInInterpolator()
 
         val anim = ValueAnimator.ofFloat(0f, 1f)
@@ -308,10 +316,10 @@ class MeowBottomNavigation : FrameLayout {
             val cell = cells[i]
             if (model.id == id) {
                 anim(cell, id, enableAnimation)
-                cell.enableCell()
+                cell.enableCell(enableAnimation)
                 onShowListener(model)
             } else {
-                cell.disableCell()
+                cell.disableCell(hasAnimation)
             }
         }
         selectedId = id

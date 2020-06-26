@@ -19,7 +19,7 @@ Update your `build.gradle` (module path) like below :
 
 ```groovy
 dependencies {
-  implementation 'com.etebarian:meow-bottom-navigation:1.3.0'
+  implementation 'com.etebarian:meow-bottom-navigation:1.3.1'
 }
 ```
 
@@ -73,17 +73,19 @@ Add vectorDrawables.useSupportLibrary = true to your build.gradle inside `defaul
 
 ```xml
 <com.etebarian.meowbottomnavigation.MeowBottomNavigation
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:mbn_circleColor="#ffffff"
-        app:mbn_backgroundBottomColor="#ffffff"
-        app:mbn_countBackgroundColor="#ff6f00"
-        app:mbn_countTextColor="#ffffff"
-        app:mbn_countTypeface="fonts/SourceSansPro-Regular.ttf"
-        app:mbn_defaultIconColor="#90a4ae"
-        app:mbn_rippleColor="#2f424242"
-        app:mbn_selectedIconColor="#3c415e"
-        app:mbn_shadowColor="#1f212121"/>
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:mbn_circleColor="#ffffff"
+    app:mbn_backgroundBottomColor="#ffffff"
+    app:mbn_countBackgroundColor="#ff6f00"
+    app:mbn_countTextColor="#ffffff"
+    app:mbn_countTypeface="fonts/SourceSansPro-Regular.ttf"
+    app:mbn_defaultIconColor="#90a4ae"
+    app:mbn_rippleColor="#2f424242"
+    app:mbn_selectedIconColor="#3c415e"
+    app:mbn_shadowColor="#1f212121"
+    app:mbn_hasAnimation="true"    
+/>
 ```
 
 - You can change this properties in **Kotlin/Java** Realtime⌚. 

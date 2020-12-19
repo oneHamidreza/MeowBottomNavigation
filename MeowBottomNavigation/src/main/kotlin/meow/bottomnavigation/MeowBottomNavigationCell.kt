@@ -116,6 +116,22 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
             }
         }
 
+    var title: String? =
+        EMPTY_VALUE
+        set(value) {
+            field = value
+            if (allowDraw) {
+                if (title != null && title == EMPTY_VALUE) {
+                    binding.tvCount.text = ""
+                    binding.tvCount.visibility = View.INVISIBLE
+                } else {
+                    binding.tvTitle.text = title
+                    binding.tvTitle.visibility = View.VISIBLE
+
+                }
+            }
+        }
+
     private var iconSize = 48f.dp(context)
         set(value) {
             field = value
@@ -134,6 +150,13 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
             field = value
             if (allowDraw)
                 binding.tvCount.setTextColor(field)
+        }
+
+    var titleTextColor = 0
+        set(value) {
+            field = value
+            if (allowDraw)
+                binding.tvTitle.setTextColor(field)
         }
 
     var countBackgroundColor = 0
@@ -257,6 +280,7 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
     private fun animateProgress(enableCell: Boolean, isAnimate: Boolean = true) {
         val d = if (enableCell) duration else 250
         val anim = ValueAnimator.ofFloat(0f, 1f)
+        binding.tvTitle?.visibility = if (enableCell) View.GONE else View.VISIBLE
         anim.apply {
             startDelay = if (enableCell) d / 4 else 0L
             duration = if (isAnimate) d else 1L

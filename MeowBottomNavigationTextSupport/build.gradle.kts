@@ -9,6 +9,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("com.android.library")
     kotlin("android")
+    `maven-publish`
+    id("com.jfrog.bintray") version "1.8.5"
 }
 
 group = Publishing.groupId

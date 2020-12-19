@@ -39,7 +39,7 @@
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-stdlib-common/1.3.72/6ca8bee3d88957eaaaef077c41c908c9940492d8/kotlin-stdlib-common-1.3.72.jar" />
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains/annotations/13.0/919f0dfe192fb4e063e7dacadee7f8bb9a2672a9/annotations-13.0.jar" />
         </processorPath>
-        <module name="MeowBottomNavigation.MeowBottomNavigation" />
+        <module name="MeowBottomNavigation.MeowBottomNavigationTextSupport" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />

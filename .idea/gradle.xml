@@ -11,7 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/MeowBottomNavigation" />
+            <option value="$PROJECT_DIR$/MeowBottomNavigationTextSupport" />
             <option value="$PROJECT_DIR$/Sample" />
             <option value="$PROJECT_DIR$/buildSrc" />
           </set>

@@ -116,7 +116,7 @@ class MeowBottomNavigation : FrameLayout {
     private lateinit var bezierView: BezierView
 
     init {
-        heightCell = 80.dp(context)
+        heightCell = 76.dp(context)
     }
 
     constructor(context: Context) : super(context) {

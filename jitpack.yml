@@ -1,2 +1,0 @@
-install:
-  - ./gradlew publish -PmavPublishToMavenLocal=true

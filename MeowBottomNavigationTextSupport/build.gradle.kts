@@ -95,7 +95,6 @@ sourceSets.create("main") {
     java.excludes.add("**/build/**")
     resources.srcDirs("${meow.AppConfig.Build.SRC_MAIN}res")
 }
-/*
 
 publishing {
     publications {
@@ -129,7 +128,7 @@ publishing {
         }
     }
 }
-
+/*
 bintray {
     user = getPropertyAny("bintray.user")
     key = getPropertyAny("bintray.key")

@@ -1,2 +1,2 @@
-arootProject.name = "MeowBottomNavigation"
+rootProject.name = "MeowBottomNavigation"
 include(":Sample", ":MeowBottomNavigationTextSupport")

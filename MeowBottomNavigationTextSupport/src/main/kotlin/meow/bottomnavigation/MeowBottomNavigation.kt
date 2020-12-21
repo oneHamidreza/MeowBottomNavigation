@@ -28,7 +28,6 @@ import android.util.LayoutDirection
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.etebarian.meowbottomnavigation.R
 import kotlin.math.abs
@@ -117,7 +116,7 @@ class MeowBottomNavigation : FrameLayout {
     private lateinit var bezierView: BezierView
 
     init {
-        heightCell = 96.dp(context)
+        heightCell = 80.dp(context)
     }
 
     constructor(context: Context) : super(context) {
@@ -228,7 +227,7 @@ class MeowBottomNavigation : FrameLayout {
             layoutParams = params
             icon = model.icon
             count = model.count
-            title=model.title;
+            title=model.title
             defaultIconColor = this@MeowBottomNavigation.defaultIconColor
             selectedIconColor = this@MeowBottomNavigation.selectedIconColor
             circleColor = this@MeowBottomNavigation.circleColor

@@ -79,7 +79,6 @@ tasks {
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation(project(":MeowBottomNavigationTextSupport"))
-
     // Implementation Dependencies
     Dependencies.implementationItems.forEach {
         implementation(it)

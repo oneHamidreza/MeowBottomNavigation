@@ -22,6 +22,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url = uri("https://dl.bintray.com/chrynan/chrynan")
+        }
+        maven { url =uri("https://jitpack.io") }
     }
 }
 

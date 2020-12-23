@@ -25,6 +25,7 @@ import android.graphics.Typeface
 import android.os.Build
 import android.util.AttributeSet
 import android.util.LayoutDirection
+import android.util.Log
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -116,7 +117,9 @@ class MeowBottomNavigation : FrameLayout {
     private lateinit var bezierView: BezierView
 
     init {
-        heightCell = 76.dp(context)
+
+        heightCell = context.resources.getDimension(R.dimen._32sdp).toInt()
+        heightCell=heightCell.dp(context)
     }
 
     constructor(context: Context) : super(context) {
@@ -201,7 +204,7 @@ class MeowBottomNavigation : FrameLayout {
             color = backgroundBottomColor
             shadowColor = this@MeowBottomNavigation.shadowColor
         }
-
+        Log.e("DIMEN", heightCell.toString())
         addView(bezierView)
         addView(ll_cells)
         allowDraw = true

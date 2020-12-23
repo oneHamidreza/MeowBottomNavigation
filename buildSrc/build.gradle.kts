@@ -8,4 +8,7 @@ kotlinDslPluginOptions {
 
 repositories {
     jcenter()
+    maven {
+        url = uri("https://dl.bintray.com/chrynan/chrynan")
+    }
 }

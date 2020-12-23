@@ -39,7 +39,6 @@ class MainActivity : AppCompatActivity() {
 
         val tvSelected = binding.tvSelected
         tvSelected.typeface = Typeface.createFromAsset(assets, "fonts/SourceSansPro-Regular.ttf")
-
         binding.bottomNavigation.apply {
 
             add(

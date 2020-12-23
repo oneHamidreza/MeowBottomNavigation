@@ -3,7 +3,6 @@ import meow.AppConfig
 import meow.AppConfig.Dependencies
 import meow.AppConfig.Publishing
 import meow.AppConfig.Versions
-import meow.getPropertyAny
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -68,7 +67,7 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
+    implementation ("com.intuit.sdp:sdp-android:1.0.6")
     // Implementation Dependencies
     Dependencies.implementationItems.forEach {
         implementation(it)

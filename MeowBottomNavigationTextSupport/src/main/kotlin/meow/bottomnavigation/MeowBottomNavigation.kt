@@ -32,6 +32,7 @@ import android.widget.LinearLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.etebarian.meowbottomnavigation.R
 import kotlin.math.abs
+import kotlin.math.roundToInt
 
 /**
  * Meow Bottom Navigation Cell class.
@@ -117,8 +118,7 @@ class MeowBottomNavigation : FrameLayout {
     private lateinit var bezierView: BezierView
 
     init {
-
-        heightCell = context.resources.getDimension(R.dimen._32sdp).toInt()
+        heightCell = context.resources.getDimension(R.dimen._30sdp).toInt()
         heightCell=heightCell.dp(context)
     }
 
@@ -159,6 +159,8 @@ class MeowBottomNavigation : FrameLayout {
                     R.styleable.MeowBottomNavigation_mbn_backgroundBottomColor,
                     backgroundBottomColor
                 )
+                heightCell =
+                    getDimension(R.styleable.MeowBottomNavigation_mbn_height,heightCell.toFloat()).roundToInt()
 
                 circleColor =
                     getColor(R.styleable.MeowBottomNavigation_mbn_circleColor, circleColor)

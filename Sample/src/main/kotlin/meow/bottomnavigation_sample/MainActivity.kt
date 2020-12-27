@@ -39,37 +39,41 @@ class MainActivity : AppCompatActivity() {
 
         val tvSelected = binding.tvSelected
         tvSelected.typeface = Typeface.createFromAsset(assets, "fonts/SourceSansPro-Regular.ttf")
-
         binding.bottomNavigation.apply {
 
             add(
                 MeowBottomNavigation.Model(
                     ID_HOME,
-                    R.drawable.ic_home
+                    R.drawable.ic_home,
+                    "Home"
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_EXPLORE,
-                    R.drawable.ic_explore
+                    R.drawable.ic_explore,
+                    "Explore"
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_MESSAGE,
-                    R.drawable.ic_message
+                    R.drawable.ic_message,
+                    "Messages"
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_NOTIFICATION,
-                    R.drawable.ic_notification
+                    R.drawable.ic_notification,
+                    "Notification"
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_ACCOUNT,
-                    R.drawable.ic_account
+                    R.drawable.ic_account,
+                    "Account"
                 )
             )
 

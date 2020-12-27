@@ -7,8 +7,9 @@ buildscript {
     }
 
     dependencies {
-        classpath("com.android.tools.build:gradle:4.0.0")
+        classpath("com.android.tools.build:gradle:4.1.1")
         classpath(kotlin("gradle-plugin", kotlinVersion))
+        classpath ("com.github.dcendents:android-maven-gradle-plugin:2.1")
     }
 }
 
@@ -21,6 +22,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url = uri("https://dl.bintray.com/chrynan/chrynan")
+        }
+        maven { url =uri("https://jitpack.io") }
     }
 }
 

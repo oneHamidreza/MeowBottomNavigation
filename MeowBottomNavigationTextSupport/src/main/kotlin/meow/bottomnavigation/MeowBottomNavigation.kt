@@ -25,12 +25,14 @@ import android.graphics.Typeface
 import android.os.Build
 import android.util.AttributeSet
 import android.util.LayoutDirection
+import android.util.Log
 import android.view.Gravity
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 import com.etebarian.meowbottomnavigation.R
 import kotlin.math.abs
+import kotlin.math.roundToInt
 
 /**
  * Meow Bottom Navigation Cell class.
@@ -74,6 +76,7 @@ class MeowBottomNavigation : FrameLayout {
             field = value
             updateAllIfAllowDraw()
         }
+
     var circleColor = Color.parseColor("#ffffff")
         set(value) {
             field = value
@@ -81,6 +84,11 @@ class MeowBottomNavigation : FrameLayout {
         }
     private var shadowColor = -0x454546
     var countTextColor = Color.parseColor("#ffffff")
+        set(value) {
+            field = value
+            updateAllIfAllowDraw()
+        }
+    var titleTextColor = Color.parseColor("#000000")
         set(value) {
             field = value
             updateAllIfAllowDraw()
@@ -104,12 +112,14 @@ class MeowBottomNavigation : FrameLayout {
 
     private var allowDraw = false
 
+
     @Suppress("PrivatePropertyName")
     private lateinit var ll_cells: LinearLayout
     private lateinit var bezierView: BezierView
 
     init {
-        heightCell = 96.dp(context)
+        heightCell = context.resources.getDimension(R.dimen._30sdp).toInt()
+        heightCell=heightCell.dp(context)
     }
 
     constructor(context: Context) : super(context) {
@@ -149,10 +159,15 @@ class MeowBottomNavigation : FrameLayout {
                     R.styleable.MeowBottomNavigation_mbn_backgroundBottomColor,
                     backgroundBottomColor
                 )
+                heightCell =
+                    getDimension(R.styleable.MeowBottomNavigation_mbn_height,heightCell.toFloat()).roundToInt()
+
                 circleColor =
                     getColor(R.styleable.MeowBottomNavigation_mbn_circleColor, circleColor)
                 countTextColor =
                     getColor(R.styleable.MeowBottomNavigation_mbn_countTextColor, countTextColor)
+                titleTextColor =
+                    getColor(R.styleable.MeowBottomNavigation_mbn_titleTextColor, titleTextColor)
                 countBackgroundColor = getColor(
                     R.styleable.MeowBottomNavigation_mbn_countBackgroundColor,
                     countBackgroundColor
@@ -191,7 +206,7 @@ class MeowBottomNavigation : FrameLayout {
             color = backgroundBottomColor
             shadowColor = this@MeowBottomNavigation.shadowColor
         }
-
+        Log.e("DIMEN", heightCell.toString())
         addView(bezierView)
         addView(ll_cells)
         allowDraw = true
@@ -217,10 +232,12 @@ class MeowBottomNavigation : FrameLayout {
             layoutParams = params
             icon = model.icon
             count = model.count
+            title=model.title
             defaultIconColor = this@MeowBottomNavigation.defaultIconColor
             selectedIconColor = this@MeowBottomNavigation.selectedIconColor
             circleColor = this@MeowBottomNavigation.circleColor
             countTextColor = this@MeowBottomNavigation.countTextColor
+            titleTextColor = this@MeowBottomNavigation.titleTextColor
             countBackgroundColor = this@MeowBottomNavigation.countBackgroundColor
             countTypeface = this@MeowBottomNavigation.countTypeface
             rippleColor = this@MeowBottomNavigation.rippleColor
@@ -299,6 +316,7 @@ class MeowBottomNavigation : FrameLayout {
                 addUpdateListener {
                     val f = it.animatedFraction
                     bezierView.progress = f * 2f
+
                 }
                 start()
             }
@@ -382,8 +400,7 @@ class MeowBottomNavigation : FrameLayout {
         onReselectListener = listener
     }
 
-    class Model(var id: Int, var icon: Int) {
-
+    class Model(var id: Int,var icon: Int,var title: String) {
         var count: String = MeowBottomNavigationCell.EMPTY_VALUE
 
     }

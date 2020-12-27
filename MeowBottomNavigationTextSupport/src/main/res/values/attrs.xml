@@ -5,8 +5,11 @@
         <attr name="mbn_defaultIconColor" format="color" />
         <attr name="mbn_selectedIconColor" format="color" />
         <attr name="mbn_backgroundBottomColor" format="color" />
+        <attr name="mbn_backgroundBottomResource" format="reference" />
         <attr name="mbn_circleColor" format="color" />
+        <attr name="mbn_height" format="dimension" />
         <attr name="mbn_countTextColor" format="color" />
+        <attr name="mbn_titleTextColor" format="color" />
         <attr name="mbn_countBackgroundColor" format="color" />
         <attr name="mbn_countTypeface" format="string" />
         <attr name="mbn_rippleColor" format="color" />

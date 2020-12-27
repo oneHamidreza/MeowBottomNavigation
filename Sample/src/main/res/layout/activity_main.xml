@@ -54,6 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             app:mbn_circleColor="#ffffff"
+            app:mbn_height="78dip"
             app:mbn_backgroundBottomColor="#ffffff"
             app:mbn_countBackgroundColor="#ff6f00"
             app:mbn_countTextColor="#ffffff"

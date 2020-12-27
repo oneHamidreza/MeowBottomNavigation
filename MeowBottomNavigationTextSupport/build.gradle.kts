@@ -1,16 +1,14 @@
-import com.jfrog.bintray.gradle.BintrayExtension
+//import com.jfrog.bintray.gradle.BintrayExtension
 import meow.AppConfig
 import meow.AppConfig.Dependencies
 import meow.AppConfig.Publishing
 import meow.AppConfig.Versions
-import meow.getPropertyAny
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("com.android.library")
     kotlin("android")
-    `maven-publish`
-    id("com.jfrog.bintray") version "1.8.5"
+    id("com.github.dcendents.android-maven")
 }
 
 group = Publishing.groupId
@@ -69,7 +67,7 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-
+    implementation ("com.intuit.sdp:sdp-android:1.0.6")
     // Implementation Dependencies
     Dependencies.implementationItems.forEach {
         implementation(it)
@@ -95,40 +93,40 @@ sourceSets.create("main") {
     java.excludes.add("**/build/**")
     resources.srcDirs("${meow.AppConfig.Build.SRC_MAIN}res")
 }
-
-publishing {
-    publications {
-        create<MavenPublication>(publicationName) {
-            groupId = project.group.toString()
-            artifactId = Publishing.artifactId
-            version = project.version.toString()
-
-            pom.withXml {
-                val dependenciesNode = asNode().appendNode("dependencies")
-                val configurationNames = arrayOf("implementation", "api")
-                configurationNames.forEach { c ->
-                    configurations[c].allDependencies.forEach {
-                        if (it.group != null) {
-                            val dependencyNode = dependenciesNode.appendNode("dependency")
-                            dependencyNode.appendNode("groupId", it.group)
-                            dependencyNode.appendNode("artifactId", it.name)
-                            dependencyNode.appendNode("version", it.version)
-                        }
-                    }
-                }
-            }
-
-            val sourcesJar by tasks.registering(Jar::class) {
-                archiveClassifier.convention("sources")
-                from(project.sourceSets["main"].allSource)
-            }
-
-            artifact("$buildDir/outputs/aar/MeowBottomNavigation-release.aar")
-            artifact(sourcesJar.get())
-        }
-    }
-}
-
+//
+//publishing {
+//    publications {
+//        create<MavenPublication>(publicationName) {
+//            groupId = project.group.toString()
+//            artifactId = Publishing.artifactId
+//            version = project.version.toString()
+//
+//            pom.withXml {
+//                val dependenciesNode = asNode().appendNode("dependencies")
+//                val configurationNames = arrayOf("implementation", "api")
+//                configurationNames.forEach { c ->
+//                    configurations[c].allDependencies.forEach {
+//                        if (it.group != null) {
+//                            val dependencyNode = dependenciesNode.appendNode("dependency")
+//                            dependencyNode.appendNode("groupId", it.group)
+//                            dependencyNode.appendNode("artifactId", it.name)
+//                            dependencyNode.appendNode("version", it.version)
+//                        }
+//                    }
+//                }
+//            }
+//
+//            val sourcesJar by tasks.registering(Jar::class) {
+//                archiveClassifier.convention("sources")
+//                from(project.sourceSets["main"].allSource)
+//            }
+//
+//            artifact("$buildDir/outputs/aar/MeowBottomNavigation-release.aar")
+//            artifact(sourcesJar.get())
+//        }
+//    }
+//}
+/*
 bintray {
     user = getPropertyAny("bintray.user")
     key = getPropertyAny("bintray.key")
@@ -156,4 +154,4 @@ bintray {
         )
         publicDownloadNumbers = true
     })
-}
+}*/

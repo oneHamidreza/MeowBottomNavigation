@@ -16,14 +16,13 @@
 
 package meow.bottomnavigation
 
+import android.R
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Path
-import android.graphics.PointF
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
+
 
 /**
  * Bezier View class.
@@ -49,6 +48,7 @@ class BezierView @JvmOverloads constructor(
 
     private var width = 0f
     private var height = 0f
+    private var bgRes = 0
     private var bezierOuterWidth = 0f
     private var bezierOuterHeight = 0f
     private var bezierInnerWidth = 0f
@@ -60,6 +60,13 @@ class BezierView @JvmOverloads constructor(
             field = value
             mainPaint?.color = field
             invalidate()
+        }
+    var backgroundResourceId = 0
+        set(value) {
+            if (value != 0) {
+               field=value;
+                invalidate()
+            }
         }
     var shadowColor = 0
         set(value) {
@@ -118,6 +125,7 @@ class BezierView @JvmOverloads constructor(
             isAntiAlias = true
             style = Paint.Style.FILL
             color = this@BezierView.color
+
         }
 
         shadowPaint = Paint(Paint.ANTI_ALIAS_FLAG)

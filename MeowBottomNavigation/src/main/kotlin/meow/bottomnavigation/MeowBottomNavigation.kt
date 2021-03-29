@@ -201,9 +201,9 @@ class MeowBottomNavigation : FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         if (selectedId == -1) {
             bezierView.bezierX =
-                if (Build.VERSION.SDK_INT >= 17 && layoutDirection == LayoutDirection.RTL) measuredWidth + 72f.dp(
+                if (Build.VERSION.SDK_INT >= 17 && layoutDirection == LayoutDirection.RTL) measuredWidth + 0f.dp(
                     context
-                ) else (-72f).dp(context)
+                ) else (-0f).dp(context)
         }
         if (selectedId != -1) {
             show(selectedId, false)
@@ -217,6 +217,7 @@ class MeowBottomNavigation : FrameLayout {
             layoutParams = params
             icon = model.icon
             count = model.count
+            title = model.title
             defaultIconColor = this@MeowBottomNavigation.defaultIconColor
             selectedIconColor = this@MeowBottomNavigation.selectedIconColor
             circleColor = this@MeowBottomNavigation.circleColor
@@ -382,7 +383,7 @@ class MeowBottomNavigation : FrameLayout {
         onReselectListener = listener
     }
 
-    class Model(var id: Int, var icon: Int) {
+    class Model(var id: Int, var icon: Int, var title: String) {
 
         var count: String = MeowBottomNavigationCell.EMPTY_VALUE
 

@@ -7,7 +7,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
+        android:background="@android:color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -35,10 +35,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
                 android:layout_marginTop="16dp"
-                android:inputType="numberDecimal"
-                android:hint="Page ID" />
+                android:layout_marginEnd="16dp"
+                android:hint="Page ID"
+                android:inputType="numberDecimal" />
 
             <Button
                 android:id="@+id/btShow"
@@ -53,16 +53,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:mbn_circleColor="#ffffff"
             app:mbn_backgroundBottomColor="#ffffff"
+            app:mbn_circleColor="#000000"
             app:mbn_countBackgroundColor="#ff6f00"
             app:mbn_countTextColor="#ffffff"
             app:mbn_countTypeface="fonts/SourceSansPro-Regular.ttf"
-            app:mbn_defaultIconColor="#90a4ae"
+            app:mbn_defaultIconColor="#000000"
+            app:mbn_hasAnimation="true"
             app:mbn_rippleColor="#2f424242"
-            app:mbn_selectedIconColor="#3c415e"
-            app:mbn_shadowColor="#1f212121"
-            app:mbn_hasAnimation="true" />
+            app:mbn_selectedIconColor="#ffffff"
+            app:mbn_shadowColor="#1f212121" />
 
     </FrameLayout>
 

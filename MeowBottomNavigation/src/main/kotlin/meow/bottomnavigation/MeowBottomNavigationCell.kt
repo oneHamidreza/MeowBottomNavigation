@@ -54,6 +54,7 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
 
     companion object {
         const val EMPTY_VALUE = "empty"
+
     }
 
     private val binding = DataBindingUtil.inflate<MeowNavigationCellBinding>(
@@ -93,6 +94,14 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
             field = value
             if (allowDraw)
                 binding.iv.setImageResource(value)
+        }
+
+    var title: String? = EMPTY_VALUE
+        set(value) {
+            field = value
+            if (allowDraw) {
+                binding.tvTitle.text = title
+            }
         }
 
     var count: String? =

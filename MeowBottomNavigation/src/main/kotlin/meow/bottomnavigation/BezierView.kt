@@ -137,9 +137,9 @@ class BezierView @JvmOverloads constructor(
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
         width = MeasureSpec.getSize(widthMeasureSpec).toFloat()
         height = MeasureSpec.getSize(heightMeasureSpec).toFloat()
-        bezierOuterWidth = 72f.dp(context)
-        bezierOuterHeight = 8f.dp(context)
-        bezierInnerWidth = 124f.dp(context)
+        bezierOuterWidth = 0f.dp(context)
+        bezierOuterHeight = 20f.dp(context)
+        bezierInnerWidth = 150f.dp(context)
         bezierInnerHeight = 16f.dp(context)
 
         val extra = shadowHeight

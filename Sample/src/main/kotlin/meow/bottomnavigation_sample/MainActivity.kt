@@ -45,42 +45,36 @@ class MainActivity : AppCompatActivity() {
             add(
                 MeowBottomNavigation.Model(
                     ID_HOME,
-                    R.drawable.ic_home
+                    R.drawable.ic_home, "Home"
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_EXPLORE,
-                    R.drawable.ic_explore
+                    R.drawable.ic_explore, "My Car"
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_MESSAGE,
-                    R.drawable.ic_message
-                )
-            )
-            add(
-                MeowBottomNavigation.Model(
-                    ID_NOTIFICATION,
-                    R.drawable.ic_notification
+                    R.drawable.ic_message, "Search"
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_ACCOUNT,
-                    R.drawable.ic_account
+                    R.drawable.ic_account, "Profile"
                 )
             )
 
-            setCount(ID_NOTIFICATION, "115")
+//            setCount(ID_NOTIFICATION, "115")
 
             setOnShowListener {
                 val name = when (it.id) {
                     ID_HOME -> "HOME"
                     ID_EXPLORE -> "EXPLORE"
                     ID_MESSAGE -> "MESSAGE"
-                    ID_NOTIFICATION -> "NOTIFICATION"
+//                    ID_NOTIFICATION -> "NOTIFICATION"
                     ID_ACCOUNT -> "ACCOUNT"
                     else -> ""
                 }
@@ -93,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                     ID_HOME -> "HOME"
                     ID_EXPLORE -> "EXPLORE"
                     ID_MESSAGE -> "MESSAGE"
-                    ID_NOTIFICATION -> "NOTIFICATION"
+//                    ID_NOTIFICATION -> "NOTIFICATION"
                     ID_ACCOUNT -> "ACCOUNT"
                     else -> ""
                 }

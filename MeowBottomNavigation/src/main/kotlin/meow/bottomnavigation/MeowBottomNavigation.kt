@@ -22,6 +22,7 @@ import android.animation.ValueAnimator
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.util.AttributeSet
 import android.util.LayoutDirection
@@ -382,7 +383,7 @@ class MeowBottomNavigation : FrameLayout {
         onReselectListener = listener
     }
 
-    class Model(var id: Int, var icon: Int) {
+    class Model(var id: Int, var icon: Drawable?) {
 
         var count: String = MeowBottomNavigationCell.EMPTY_VALUE
 

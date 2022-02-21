@@ -19,7 +19,7 @@ Update your `build.gradle` (module path) like below :
 
 ```groovy
 dependencies {
-  implementation 'com.etebarian:meow-bottom-navigation:1.3.1'
+  implementation 'com.etebarian:meow-bottom-navigation:1.4.1'
 }
 ```
 
@@ -62,9 +62,9 @@ Add menu items in code.
 
 ```kotlin
 val bottomNavigation = findView(R.id.bottomNavigation)
-bottomNavigation.add(MeowBottomNavigation.Model(1, R.drawable.ic_home))
-bottomNavigation.add(MeowBottomNavigation.Model(2, R.drawable.ic_explore))
-bottomNavigation.add(MeowBottomNavigation.Model(3, R.drawable.ic_message))
+bottomNavigation.add(MeowBottomNavigation.Model(1, ContextCompat.getDrawable(this@MainActivity,R.drawable.ic_home)))
+bottomNavigation.add(MeowBottomNavigation.Model(2, ContextCompat.getDrawable(this@MainActivity,R.drawable.ic_explore)))
+bottomNavigation.add(MeowBottomNavigation.Model(3, ContextCompat.getDrawable(this@MainActivity,R.drawable.ic_message)))
 ```
 
 Add vectorDrawables.useSupportLibrary = true to your build.gradle inside `defaultConfig{ ... }` to use vector drawable icons.

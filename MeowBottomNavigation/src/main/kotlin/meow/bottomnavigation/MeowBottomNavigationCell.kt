@@ -21,6 +21,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.Drawable
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
 import android.os.Build
@@ -88,11 +89,11 @@ class MeowBottomNavigationCell @JvmOverloads constructor(
                 isEnabledCell = isEnabledCell
         }
 
-    var icon = 0
+    var icon: Drawable? = null
         set(value) {
             field = value
             if (allowDraw)
-                binding.iv.setImageResource(value)
+                binding.iv.setImageDrawable(value)
         }
 
     var count: String? =

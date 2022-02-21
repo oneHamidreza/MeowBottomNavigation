@@ -4,6 +4,8 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.DataBindingUtil
 import com.etebarian.meowbottomnavigation_sample.R
 import com.etebarian.meowbottomnavigation_sample.databinding.ActivityMainBinding
@@ -45,31 +47,31 @@ class MainActivity : AppCompatActivity() {
             add(
                 MeowBottomNavigation.Model(
                     ID_HOME,
-                    R.drawable.ic_home
+                    ContextCompat.getDrawable(this@MainActivity, R.drawable.ic_home)
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_EXPLORE,
-                    R.drawable.ic_explore
+                    ContextCompat.getDrawable(this@MainActivity,R.drawable.ic_explore)
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_MESSAGE,
-                    R.drawable.ic_message
+                    ContextCompat.getDrawable(this@MainActivity,R.drawable.ic_message)
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_NOTIFICATION,
-                    R.drawable.ic_notification
+                    ContextCompat.getDrawable(this@MainActivity,R.drawable.ic_notification)
                 )
             )
             add(
                 MeowBottomNavigation.Model(
                     ID_ACCOUNT,
-                    R.drawable.ic_account
+                    ContextCompat.getDrawable(this@MainActivity,R.drawable.ic_account)
                 )
             )
 

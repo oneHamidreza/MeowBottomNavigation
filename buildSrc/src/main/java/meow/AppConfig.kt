@@ -58,9 +58,9 @@ object AppConfig {
         const val PATCH = 1
         val BUILD_PHASE = Build.PHASE.STABLE
 
-        const val SDK_COMPILE = 29
+        const val SDK_COMPILE = 33
         const val SDK_MIN = 17
-        const val SDK_TARGET = 29
+        const val SDK_TARGET = 33
 
         const val APPCOMPAT = "1.1.0"
         const val KTX = "1.1.0"

@@ -10,7 +10,8 @@ Update your `build.gradle` (project path) like below :
 ```groovy
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
 }
 ```
